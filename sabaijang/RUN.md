@@ -19,7 +19,7 @@ cd ../web && docker compose up -d --build      # hotel-web :3100 (CLOCK_MODE=tic
 
 ```bash
 npm ci
-npm test                 # unit + integration (Postgres :5435) · 246 ข้อ
+npm test                 # unit + integration (Postgres :5435) · 248 ข้อ
 npx playwright install chromium
 npx playwright test      # E2E บนเว็บที่รันอยู่ :3100 · Chrome + Pixel 7
 ```
