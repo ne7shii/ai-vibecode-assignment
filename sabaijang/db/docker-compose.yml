@@ -1,0 +1,43 @@
+name: hotel-db
+services:
+  hotel-db:
+    image: postgres:16-alpine
+    container_name: hotel-db
+    environment:
+      POSTGRES_USER: hotel
+      POSTGRES_PASSWORD: hotel
+      POSTGRES_DB: hotel
+      TZ: Asia/Bangkok
+    ports:
+      - "5434:5432"
+    volumes:
+      - hotel-pgdata:/var/lib/postgresql/data
+    networks: [hotel-net]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hotel -d hotel"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  hotel-db-test:
+    image: postgres:16-alpine
+    container_name: hotel-db-test
+    environment:
+      POSTGRES_USER: hotel
+      POSTGRES_PASSWORD: hotel
+      POSTGRES_DB: hotel_test
+      TZ: Asia/Bangkok
+    ports:
+      - "5435:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    networks: [hotel-net]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hotel -d hotel_test"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+volumes:
+  hotel-pgdata:
+networks:
+  hotel-net:
+    name: hotel-net

@@ -1,0 +1,24 @@
+# Start db first:  cd ../db && docker compose up -d   (creates network hotel-net)
+# Then:            cd ../web && docker compose up -d --build
+name: hotel-web
+services:
+  hotel-web:
+    build:
+      context: ..
+      dockerfile: web/Dockerfile
+    image: hotel-web:latest
+    container_name: hotel-web
+    environment:
+      DATABASE_URL: postgres://hotel:hotel@hotel-db:5432/hotel
+      ALLOW_TEST_RESET: ${ALLOW_TEST_RESET:-1}   # teaching/demo: reset + clock hooks on; set 0 for a public deploy
+      BUG_MODE: ${BUG_MODE:-0}
+      CLOCK_MODE: ticking   # demo clock starts at the seeded 1 Mar 2027 10:00 and runs in real time
+      PUBLIC_URL: http://localhost:3100
+    ports:
+      - "3100:3000"
+    networks: [hotel-net]
+    restart: unless-stopped
+networks:
+  hotel-net:
+    external: true
+    name: hotel-net
