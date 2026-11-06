@@ -16,3 +16,7 @@ playwright-report/
 
 # photo originals: the site uses web/public/brand/; brand-kit keeps only README + CREDITS (licences)
 sabaijang/brand-kit/*/
+
+# devops secrets (Coolify token etc.) — never commit
+devops/*.env
+devops/secrets/
