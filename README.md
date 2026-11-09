@@ -16,13 +16,27 @@
 
 "วันนี้" ของเว็บเริ่มที่ **1 มี.ค. 2027 10:00** แล้วเดินตามเวลาจริง · เว็บสาธิตเท่านั้น ไม่มีการเก็บเงินจริง ไม่ต้องใส่ข้อมูลจริง
 
+## 🛠️ Claude Skill · สำหรับบทบาท Developer
+
+โฟลเดอร์ [`skill/`](skill/) คือ Claude Code skill ชื่อ **`coolify-deploy`** สำหรับ**บทบาท Dev ของทีม** ใช้ deploy แอปที่พัฒนาขึ้น **Coolify sandbox ของทีม** (`c.bu8-sd.com`) ได้ด้วยคำสั่งเดียว เว็บโรงแรมข้างบนก็ deploy ด้วยขั้นตอนเดียวกันนี้
+
+| | |
+|---|---|
+| ใครใช้ | นักพัฒนา (Dev) ในทีม ที่อยากได้ URL สาธิตของงานตัวเอง |
+| ทำอะไร | ตรวจ token → ตรวจความพร้อมของแอป → แสดงแผน (dry run) → สร้าง project + PostgreSQL 16 + app → build บน sandbox → รอจนเสร็จ → ตรวจ health → ได้ URL `https://<ชื่อ>.c.bu8-sd.com` · มี `status` `logs` `destroy` |
+| ทำไมเป็น skill ของทีม ไม่ใช่ทั่วไป | บรรจุสิ่งที่ Claude ไม่รู้เอง: sandbox ของทีม กฎโดเมน `*.c.bu8-sd.com` กฎการใช้ sandbox (สาธารณะ อาจถูกล้าง ห้ามใช้ข้อมูลจริง แตะเฉพาะของตัวเอง) และปัญหาจริงที่เจอตอน deploy เว็บนี้ |
+| API key | **ไม่รวมอยู่ใน skill** แต่ละคนขอ token จาก**ทีม DevOps** เอง ถ้าไม่มี skill จะหยุดและบอกให้ไปขอ |
+| ความปลอดภัย | ไม่ยอมใช้ subdomain ที่มีคนใช้แล้ว · `destroy` ลบได้เฉพาะสิ่งที่ skill สร้าง · รหัสผ่านฐานข้อมูลเก็บใน `.coolify/` ที่ถูก gitignore อัตโนมัติ |
+| ทดสอบ | 13 กรณีบน sandbox จริง ผ่านทั้งหมด → [`skill/TESTING.md`](skill/TESTING.md) |
+| ติดตั้ง | `cp -r skill/coolify-deploy ~/.claude/skills/` แล้วพิมพ์ใน Claude Code ว่า *"deploy this to the sandbox as my-demo"* → [`skill/README.md`](skill/README.md) |
+
 | | |
 |---|---|
 | Stack | Next.js 15 (App Router, TypeScript) · PostgreSQL 16 (`pg`, SQL ตรง) · Docker · Vitest · Playwright |
 | เทสต์ | unit + integration 248 ข้อ · E2E 5 ข้อ (Chrome + Pixel 7) ผ่านทั้งหมด |
 | เข้าสู่ระบบ | เว็บสาธิต: เลือกผู้ใช้จาก dropdown ไม่มีรหัสผ่าน · บริการภายนอก (จ่ายเงิน อีเมล LINE) จำลองทั้งหมด |
 | Deploy | Coolify (Dockerfile build บนเซิร์ฟเวอร์ + PostgreSQL 16) · รายละเอียด [`devops/README.md`](devops/README.md) |
-| Claude skill | [`skill/`](skill/) · **coolify-deploy**: deploy แอปขึ้น sandbox ของทีม `*.c.bu8-sd.com` (ไม่รวม API key ขอจากทีม DevOps) · ผลทดสอบบน sandbox จริง [`skill/TESTING.md`](skill/TESTING.md) |
+| Claude skill (Dev) | [`skill/coolify-deploy`](skill/coolify-deploy/SKILL.md) · ดูหัวข้อ Claude Skill ข้างบน |
 
 **รันในเครื่อง:** ดู [`sabaijang/RUN.md`](sabaijang/RUN.md) (Docker 2 คำสั่ง แล้วเปิด http://localhost:3100)
 

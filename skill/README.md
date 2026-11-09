@@ -1,6 +1,6 @@
-# coolify-deploy · Claude Code skill for the team sandbox
+# coolify-deploy · Claude Code skill for the Developer role
 
-A Claude Code skill that deploys a team member's app to the **Coolify sandbox server `c.bu8-sd.com`**, under its own `https://<subdomain>.c.bu8-sd.com` address, then checks that it's really live.
+**Role: Developer (Dev).** A Claude Code skill for the team's developers. It deploys the app you're working on to the team's **Coolify sandbox server `c.bu8-sd.com`**, under its own `https://<subdomain>.c.bu8-sd.com` address, then checks that it's really live. Use it to get a demo or review URL for your work without asking DevOps every time. DevOps only issues your API token.
 
 ## Why this skill and not a generic one
 
