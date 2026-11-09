@@ -1,0 +1,16 @@
+{
+  "name": "my-app",
+  "repo": "https://github.com/<owner>/<repo>",
+  "branch": "main",
+  "baseDirectory": "/",
+  "dockerfile": "/Dockerfile",
+  "port": 3000,
+  "subdomain": "my-app",
+  "healthPath": "/api/health",
+  "database": { "type": "postgresql" },
+  "env": {
+    "NODE_ENV": "production",
+    "TZ": "Asia/Bangkok"
+  },
+  "envFile": null
+}

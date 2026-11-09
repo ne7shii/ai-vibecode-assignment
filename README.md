@@ -22,6 +22,7 @@
 | เทสต์ | unit + integration 248 ข้อ · E2E 5 ข้อ (Chrome + Pixel 7) ผ่านทั้งหมด |
 | เข้าสู่ระบบ | เว็บสาธิต: เลือกผู้ใช้จาก dropdown ไม่มีรหัสผ่าน · บริการภายนอก (จ่ายเงิน อีเมล LINE) จำลองทั้งหมด |
 | Deploy | Coolify (Dockerfile build บนเซิร์ฟเวอร์ + PostgreSQL 16) · รายละเอียด [`devops/README.md`](devops/README.md) |
+| Claude skill | [`skill/`](skill/) · **coolify-deploy**: deploy แอปขึ้น sandbox ของทีม `*.c.bu8-sd.com` (ไม่รวม API key ขอจากทีม DevOps) · ผลทดสอบบน sandbox จริง [`skill/TESTING.md`](skill/TESTING.md) |
 
 **รันในเครื่อง:** ดู [`sabaijang/RUN.md`](sabaijang/RUN.md) (Docker 2 คำสั่ง แล้วเปิด http://localhost:3100)
 
